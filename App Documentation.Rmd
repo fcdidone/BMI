@@ -9,7 +9,7 @@ output: html_document
 
 ##BMI
 
-The BMI is a number calculated from a person's wieght and height. It is a reliable indicator of body fatness for most people. However, BMI does not measure body fat directly, but reseacrh has shown that it correlates to direct measures of body fat. BMI is used as a screening tool to identify possible weight problems for adults. However, it is not a diagnotic tool.to determine if excess weight is a health risk, a _healthcare provider would need to perform further assessments._ 
+The BMI is a number calculated from a person's weight and height. It is a reliable indicator of body fatness for most people. However, BMI does not measure body fat directly, but reseacrh has shown that it correlates to direct measures of body fat. BMI is used as a screening tool to identify possible weight problems for adults. However, it is not a diagnotic tool.To determine if excess weight is a health risk, a _healthcare provider would need to perform further assessments._ 
 
 ## calculation
 

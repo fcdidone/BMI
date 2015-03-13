@@ -1,0 +1,84 @@
+Body Mass Index Calculator
+========================================================
+author: Fabio Correa Didone
+date: 13/03/2015 
+
+BMI
+========================================================
+
+
+- The BMI is a number calculated from a person's weight and height.   
+
+
+- BMI is used as a screening tool to identify possible weight problems for adults.  
+
+
+- To determine if excess weight is a health risk, a _healthcare provider would need to perform further assessments._ 
+
+Calculation
+========================================================
+
+- The formula to calculate the BMI is:  
+ ${weight}/{height}^{2}$
+ 
+- The results are given in kg/m2
+- This table show how to basic interpret the results of BMI:
+ 
+```{r echo=FALSE,}
+library(knitr)
+kable(data.frame(Status = c("Underweight","Normal","Overweight","Obese"),
+           "BMI"=c("< 18.5","18.5-25","25-30","> 30"))) 
+
+```
+
+Source: http://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/
+
+
+The APP
+========================================================
+
+Two set of unit:
+
+- Metric - **centimeters and kilograms** 
+- Imperial: - **feet and pounds**.
+
+
+```{r}
+
+BMI <- function(weight,height,units)  { 
+        if(units == "metric") {
+                round(weight/(height/100)^2,2)->temp1
+                temp1}
+        else if(units == "imperial"){
+                round((weight/(height*12)^2)*703,2)-> temp1
+                temp1}}
+```
+
+Plot
+===
+
+- The app also plots a graph of where are your BMI in the scale of the BMI.
+- The  code for the graph for a BMI of 22.
+
+```{r, echo=FALSE,fig.width=20,fig.heigth=15}
+library(ggplot2); library(grid)
+
+data.frame(Status = c("Underweight","Normal","Overweight","Obese"),
+           BMI=c(18.5,6.5,5,10),id=rep("",4) )-> gr
+
+ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
+                        geom_bar(stat="identity",position="stack")+
+        coord_flip()+
+                        scale_fill_brewer(type="div",palette="OrRd",breaks=c("Underweight","Normal","Overweight","Obese"))+
+                        scale_x_discrete(name="")+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2))+
+                        guides(fill=guide_legend(title=NULL,nrow=1))+
+                        annotate("segment",y=22,x=1.2,yend=22,xend=1.04,col="orange",size=1.2, arrow  =arrow(length= unit(0.5,"cm")))+
+                        annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=6,fontface="bold")+
+                        annotate("point",x=1,y=22,size=4,col="orange")
+
+```
+
+
+**Hope you guys enjoy it!** 
+
+-
