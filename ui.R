@@ -20,8 +20,7 @@ shinyUI(pageWithSidebar(
                 br(),
                 h4(textOutput("wt")),
                 br(),
-                h4(textOutput("BMI")),
-                h4(textOutput("l")),
+                h4(textOutput("BMI")),                                
                 plotOutput("pl")
                 
                 

@@ -16,6 +16,33 @@ BMI <- function(weight,height,units)  {
         }
 }
 
+idealWT<-function(BMI,height,units)
+{
+        if(units =="metric"){
+                if(BMI < 18.5){
+                        x <- round(((height/100)^2*18.5),2)
+                        x <- paste("Your weight should be",as.character(x),"kilograms")
+                        x
+                } 
+                else if(BMI> 25){
+                        x <- round(((height/100)^2*25),2)
+                        x <- paste("Your weight should be",as.character(x),"kilograms")
+                        x
+                } else "Your weight is fine"
+                
+        }
+        else if (units=="imperial"){
+                if(BMI<18.5){
+                        x <- round(((height*0.3048)^2*18.5*2.20462),2)
+                        x <- paste("Your weight should be",as.character(x),"pounds")
+                        x
+                } else if(BMI> 25){
+                        x <- round(((height/0.3048)^2*25*2.20462),2)
+                        x <- paste("Your weight should be",as.character(x),"pounds")
+                        x
+                }  else "Your weight is fine"
+        }}
+
 
 
 shinyServer(function(input, output){
@@ -23,11 +50,15 @@ shinyServer(function(input, output){
                      else if(input$units=="imperial") c("pounds","feets")})-> mar
         reactive({BMI(input$weight,input$height,input$units)}) -> aa
         reactive({aa()})-> a
+        reactive({a()}) -> c1
         b <- reactive({
                   if(a() < 18.5 ) "underweight." 
                   else if( a() < 25)  "normal."
                   else if(a() < 30) "overweight."
                   else "obese." })
+        
+                
+        
         
         
                 
@@ -43,6 +74,7 @@ shinyServer(function(input, output){
         
         output$ht <- renderText({paste("Your height is",input$height,mar()[[2]])})
         output$wt <- renderText({paste("Your weight is",input$weight,mar()[[1]])})
-        output$BMI <- renderText({paste("Your BMI is",as.character(a()),"and you are",b())})
+        output$BMI <- renderText({paste("Your BMI is",as.character(a()),"and you are",b(),idealWT(a(),input$height,input$units) )})
         
 })
+        
