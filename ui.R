@@ -11,7 +11,7 @@ shinyUI(pageWithSidebar(
                 submitButton(text="calculate"),
                 br(),
                 br(),
-                helpText(a("Documentation", href="http://github.com/fcdidone/BMI/blob/master/App_Documentation.html",target="_blank"))
+                helpText(a("Documentation", href="https://github.com/fcdidone/BMI/blob/master/App%20Documentation.Rmd",target="_blank"))
         ),
         mainPanel(
                 h3('BMI:'),

@@ -1,6 +1,6 @@
 ---
 title: "BMI Documentation"
-author: "Fábio Corrêa Didoné"
+author: "FÃ¡bio CorrÃªa DidonÃ©"
 date: "Friday, March 13, 2015"
 output: html_document
 ---
@@ -13,7 +13,7 @@ The BMI is a number calculated from a person's wieght and height. It is a reliab
 
 ## calculation
 
-The formula to calculate the BMI is the weight divided by the height squared.The results are given in kg/m². The bmi works well for all ages, genders and races. However, special attention must be given for childs and asians.This table show how to basic interpret the results of BMI:
+The formula to calculate the BMI is the weight divided by the height squared.The results are given in kg/mÂ². The bmi works well for all ages, genders and races. However, special attention must be given for childs and asians.This table show how to basic interpret the results of BMI:
 
 Source: http://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/
 
