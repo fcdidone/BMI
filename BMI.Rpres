@@ -19,7 +19,6 @@ Calculation
 ========================================================
 
 - The formula to calculate the BMI: 
-
  ${weight}/{height}^{2}$
  
 - The results are given in kg/m2
@@ -32,7 +31,7 @@ kable(data.frame(Status = c("Underweight","Normal","Overweight","Obese"),
 
 ```
 
-Source: http://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/
+Source: <http://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/>
 
 
 The APP
