@@ -18,7 +18,8 @@ BMI
 Calculation
 ========================================================
 
-- The formula to calculate the BMI is:  
+- The formula to calculate the BMI: 
+
  ${weight}/{height}^{2}$
  
 - The results are given in kg/m2
@@ -60,21 +61,21 @@ Plot
 - The app also plots a graph of where are your BMI in the scale of the BMI.
 - The  code for the graph for a BMI of 22.
 
-```{r, echo=FALSE,fig.width=20,fig.heigth=15}
+```{r, echo=FALSE,fig.width=20}
 library(ggplot2); library(grid)
 
 data.frame(Status = c("Underweight","Normal","Overweight","Obese"),
            BMI=c(18.5,6.5,5,10),id=rep("",4) )-> gr
 
-ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
+ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.2))+
                         geom_bar(stat="identity",position="stack")+
         coord_flip()+
                         scale_fill_brewer(type="div",palette="OrRd",breaks=c("Underweight","Normal","Overweight","Obese"))+
-                        scale_x_discrete(name="")+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2))+
+                        scale_x_discrete(name="")+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2),legend.key.size=unit(2.5,"cm"),legend.text = element_text(size=15))+
                         guides(fill=guide_legend(title=NULL,nrow=1))+
-                        annotate("segment",y=22,x=1.2,yend=22,xend=1.04,col="orange",size=1.2, arrow  =arrow(length= unit(0.5,"cm")))+
-                        annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=6,fontface="bold")+
-                        annotate("point",x=1,y=22,size=4,col="orange")
+                        annotate("segment",y=22,x=1.2,yend=22,xend=1.04,col="orange",size=1.7, arrow  =arrow(length= unit(0.5,"cm")))+
+                        annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=10,fontface="bold")+
+                        annotate("point",x=1,y=22,size=6,col="orange")
 
 ```
 

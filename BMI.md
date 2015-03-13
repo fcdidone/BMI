@@ -18,7 +18,8 @@ BMI
 Calculation
 ========================================================
 
-- The formula to calculate the BMI is:  
+- The formula to calculate the BMI: 
+
  ${weight}/{height}^{2}$
  
 - The results are given in kg/m2
