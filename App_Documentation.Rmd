@@ -46,12 +46,29 @@ BMI <- function(weight,height,units)  {
 
 ## Graphic
 
-The app also plots a graph of where are your BMI in the scale of the BMI. The  code fot the graph for a BMI of 22:
+The app also plots a graph of where are your BMI in the scale of the BMI. The  code fot the graph for a BMI of 22 and height of 170 cm:
 ```{r}
 library(ggplot2); library(grid)
 
 data.frame(Status = c("Underweight","Normal","Overweight","Obese"),
            BMI=c(18.5,6.5,5,10),id=rep("",4) )-> gr
+
+ltext<- function(height,units)
+{ 
+        if(units =="imperial"){
+                x1 <- as.character(round(((height*0.3048)^2*c(18.5,25,30)*2.20462),1))
+                paste(x1,"lbs")->x1
+                x1
+        }
+        else if(units=="metric"){
+                x1 <- as.character(round(((height/100)^2*c(18.5,25,30)),1))
+                paste(x1, "kg") -> x1
+                x1
+        }}
+
+ltext(170,"metric") -> k
+
+
 
 ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
                         geom_bar(stat="identity",position="stack",size=1)+
@@ -60,8 +77,12 @@ ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
                         scale_x_discrete(name="")+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2))+
                         guides(fill=guide_legend(title=NULL,nrow=1))+
                         annotate("segment",y=22,x=1.2,yend=22,xend=1.04,col="orange",size=1.2, arrow  =arrow(length= unit(0.5,"cm")))+
-                        annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=6,fontface="bold")+
-                        annotate("point",x=1,y=22,size=4,col="orange")
+                        annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=6,fontface="bold")+annotate("point",x=1,y=22,size=4,col="orange")+
+        annotate("text",label=k[1],x=0.93,y=19,size=4,col="orange",fontface="bold")+annotate("text",label=k[2],x=0.93,y=25.5,size=4,col="orange",fontface="bold")+
+        annotate("text",label=k[3],x=0.93,y=30.5,size=4,col="orange",fontface="bold")
+        
+        
+        
 
 ```
 
