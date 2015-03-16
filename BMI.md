@@ -18,10 +18,10 @@ BMI
 Calculation
 ========================================================
 
-- The formula to calculate the BMI: 
- ${weight}/{height}^{2}$
+- The formula to calculate the BMI: weight/height^2
  
-- The results are given in kg/m2
+- The results are given in kg/m^2
+
 - This table show how to basic interpret the results of BMI:
  
 
@@ -55,16 +55,31 @@ BMI <- function(weight,height,units)  {
                 temp1}}
 ```
 
-Plot
+
 ===
 
-- The app also plots a graph of where are your BMI in the scale of the BMI.
-- The  code for the graph for a BMI of 22.
+**Plot**
+<small>
+- The app  plots a graph of where are your BMI in the scale.
+- This is a graph for a BMI of 22.
+</small>
 
 ![plot of chunk unnamed-chunk-3](BMI-figure/unnamed-chunk-3-1.png) 
 
+***
+
+**Table**
+<small> 
+- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet 
 
 
-**Hope you guys enjoy it!** 
+
+|Status      |BMI.                    |Weight              |
+|:-----------|:-----------------------|:-------------------|
+|Underweight |< 18.5 kg/m^2           |< 118.8 lb          |
+|Normal      |18.5 kg/m^2 - 25 kg/m^2 |118.8 lb - 160.6 lb |
+|Overweight  |25 kg/m^2 - 30 kg/m^2   |160.6 lb - 192.7 lb |
+|Obese       |> 30 kg/m^2             |> 192.7 lb          |
+ </small>
 
 -

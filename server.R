@@ -20,34 +20,35 @@ idealWT<-function(BMI,height,units)
 {
         if(units =="metric"){
                 if(BMI < 18.5){
-                        x <- round(((height/100)^2*c(18.5,25)),2)
+                        x <- round(((height/100)^2*c(18.5,25)),1)
                         x <- paste("Your weight should be between",as.character(x[1]),"and",as.character(x[2]),"kilograms")
                         x
                 } 
                 else if(BMI> 25){
-                        x <- round(((height/100)^2*c(18.5,25)),2)
+                        x <- round(((height/100)^2*c(18.5,25)),1)
                         x <- paste("Your weight should be between",as.character(x[1]),"and",as.character(x[2]),"kilograms")
                         x
-                } else "Your weight is fine"
+                } else "Your weight is fine."
                 
         }
         else if (units=="imperial"){
                 if(BMI<18.5){
-                        x <- round(((height*0.3048)^2*c(18.5,25)*2.20462),2)
+                        x <- round(((height*0.3048)^2*c(18.5,25)*2.20462),1)
                         x <- paste("Your weight should be between",as.character(x[1]),"and",as.character(x[2]),"pounds")
                         x
                 } else if(BMI> 25){
-                        x <- round(((height*0.3048)^2*c(18,5,25)*2.20462),2)
+                        x <- round(((height*0.3048)^2*c(18.5,25)*2.20462),1)
                         x <- paste("Your weight should be between",as.character(x[1]),"and",as.character(x[2]),"pounds")
                         x
-                }  else "Your weight is fine"
+                }  else "Your weight is fine."
         }}
 
+gg <- enc2native(c("< 18.5 kg/m²","18.5 kg/m² - 25 kg/m²","25 kg/m² - 30 kg/m²","> 30 kg/m²"))
 ltext<- function(height,units)
 { 
         if(units =="imperial"){
                 x1 <- as.character(round(((height*0.3048)^2*c(18.5,25,30)*2.20462),1))
-                paste(x1,"lbs")->x1
+                paste(x1,"lb")->x1
                 x1
         }
         else if(units=="metric"){
@@ -69,6 +70,7 @@ shinyServer(function(input, output){
                   else "obese." })
         cc <<- reactive({ltext(input$height,input$units)})
         
+        
                 
         
         
@@ -78,19 +80,22 @@ shinyServer(function(input, output){
                 ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
                         geom_bar(stat="identity",position="stack",size=1)+coord_flip()+
                         scale_fill_brewer(type="div",palette="OrRd",breaks=c("Underweight","Normal","Overweight","Obese"))+
-                        scale_x_discrete(name="")+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2))+
+                        scale_x_discrete(name="")+scale_y_continuous(name = enc2native("BMI (kg/m²)"))+theme_bw()+theme(legend.position="top")+theme(legend.position=c(0.5,0.2))+
                         guides(fill=guide_legend(title=NULL,nrow=1))+
                         annotate("segment",y= aa(),x=1.2,yend= aa(),xend=1.04,col="orange",size=1.2, arrow  =arrow(length= unit(0.5,"cm")))+
                         annotate("text", label= "Your BMI",x=1.23,y=aa(),col="orange",size=6,fontface="bold")+
-                        annotate("point",x=1,y=aa(),size=4,col="orange")+
-                        annotate("text",label=cc()[1],x=0.93,y=18.55,size=5,col="orange",fontface="bold")+
-                        annotate("text",label=cc()[2],x=0.93,y=25.5,size=5,col="orange",fontface="bold")+
-                        annotate("text",label=cc()[3],x=0.93,y=30.5,size=5,col="orange",fontface="bold")})  
+                        annotate("point",x=1,y=aa(),size=4,col="orange")
+                        })  
         
         output$ht <- renderText({paste("Your height is",input$height,mar()[[2]])})
         output$wt <- renderText({paste("Your weight is",input$weight,mar()[[1]])})
-        output$BMI <- renderText({paste("Your BMI is",as.character(aa()),"and you are",b())})
+        output$BMI <- renderText({paste("Your BMI is",as.character(aa()),enc2native("kg/m²"), "and you are",b())})
         output$iBMI <- renderText({idealWT(aa(),input$height,input$units)})
-        
+        output$t <- renderTable({data.frame(Status=c("Underweight","Normal","Overweight","Obese"),
+                                            BMI=gg,
+                                            Weight= c(paste("<",cc()[1]),
+                                                      paste(cc()[1],"-",cc()[2]),
+                                                      paste(cc()[2],"-",cc()[3]),
+                                                      paste(">",cc()[3])))})
 })
         

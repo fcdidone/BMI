@@ -3,7 +3,7 @@ shinyUI(pageWithSidebar(
         sidebarPanel(
                 selectInput("units","Units:",
                             list("Metric (cm and kg) "="metric",
-                                 "Imperial (ft and lbs)"="imperial")),
+                                 "Imperial (ft and lb)"="imperial")),
                 numericInput("height", label = h3("Height"),
                              , value = 170),
                 numericInput("weight", label = h3("Weight"),
@@ -23,7 +23,10 @@ shinyUI(pageWithSidebar(
                 h4(textOutput("BMI")),
                 br(),
                 h4(textOutput("iBMI")),
+                br(),
+                tableOutput("t"),
                 plotOutput("pl")
+                
                 
                 
                 

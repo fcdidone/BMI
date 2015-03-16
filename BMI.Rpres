@@ -18,10 +18,10 @@ BMI
 Calculation
 ========================================================
 
-- The formula to calculate the BMI: 
- ${weight}/{height}^{2}$
+- The formula to calculate the BMI: weight/height^2
  
-- The results are given in kg/m2
+- The results are given in kg/m^2
+
 - This table show how to basic interpret the results of BMI:
  
 ```{r echo=FALSE,}
@@ -54,13 +54,16 @@ BMI <- function(weight,height,units)  {
                 temp1}}
 ```
 
-Plot
+
 ===
 
-- The app also plots a graph of where are your BMI in the scale of the BMI.
-- The  code for the graph for a BMI of 22.
+**Plot**
+<small>
+- The app  plots a graph of where are your BMI in the scale.
+- This is a graph for a BMI of 22.
+</small>
 
-```{r, echo=FALSE,fig.width=20}
+```{r, echo=FALSE,png=TRUE,fig.width=15}
 
 library(ggplot2); library(grid)
 
@@ -92,16 +95,48 @@ ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
                         guides(fill=guide_legend(title=NULL,nrow=1))+
                         annotate("segment",y=22,x=1.2,yend=22,xend=1.04,col="orange",size=1.2, arrow  =arrow(length= unit(0.5,"cm")))+
                         annotate("text", label= "Your BMI",x=1.23,y=22,col="orange",size=6,fontface="bold")+annotate("point",x=1,y=22,size=4,col="orange")+
-        annotate("text",label=k[1],x=0.93,y=19,size=4,col="orange",fontface="bold")+annotate("text",label=k[2],x=0.93,y=25.5,size=4,col="orange",fontface="bold")+
-        annotate("text",label=k[3],x=0.93,y=30.5,size=4,col="orange",fontface="bold")
+        scale_y_continuous(name = enc2native("BMI (kg/m²)"))
         
         
         
 
 ```
 
+***
+
+**Table**
+<small> 
+- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet 
 
 
-**Hope you guys enjoy it!** 
+```{r,echo=FALSE,size=0.3}
+
+library(pander)
+
+gg <- c("< 18.5 kg/m^2","18.5 kg/m^2 - 25 kg/m^2","25 kg/m^2 - 30 kg/m^2","> 30 kg/m^2")
+
+ltext<- function(height,units)
+{ 
+        if(units =="imperial"){
+                x1 <- as.character(round(((height*0.3048)^2*c(18.5,25,30)*2.20462),1))
+                paste(x1,"lb")->x1
+                x1
+        }
+        else if(units=="metric"){
+                x1 <- as.character(round(((height/100)^2*c(18.5,25,30)),1))
+                paste(x1, "kg") -> x1
+                x1
+        }}
+cc <- ltext(5.6,"imperial")
+
+kable(data.frame(Status=c("Underweight","Normal","Overweight","Obese"),
+                                            "BMI " =gg,
+                                            Weight= c(paste("<",cc[1]),
+                                                      paste(cc[1],"-",cc[2]),
+                                                      paste(cc[2],"-",cc[3]),
+                                                      paste(">",cc[3]))))
+
+```
+ </small>
 
 -
