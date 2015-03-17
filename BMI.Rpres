@@ -62,8 +62,7 @@ BMI <- function(weight,height,units)  {
 - The app  plots a graph of where are your BMI in the scale.
 - This is a graph for a BMI of 22.
 </small>
-
-```{r, echo=FALSE,png=TRUE,fig.width=15}
+```{r, echo=FALSE}
 
 library(ggplot2); library(grid)
 
@@ -107,6 +106,8 @@ ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
 **Table**
 <small> 
 - The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet: 
+
+
 
 
 ```{r,echo=FALSE}

@@ -63,7 +63,6 @@ BMI <- function(weight,height,units)  {
 - The app  plots a graph of where are your BMI in the scale.
 - This is a graph for a BMI of 22.
 </small>
-
 ![plot of chunk unnamed-chunk-3](BMI-figure/unnamed-chunk-3-1.png) 
 
 ***
@@ -71,6 +70,8 @@ BMI <- function(weight,height,units)  {
 **Table**
 <small> 
 - The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet: 
+
+
 
 
 
