@@ -70,7 +70,7 @@ BMI <- function(weight,height,units)  {
 
 **Table**
 <small> 
-- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet 
+- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet: 
 
 
 

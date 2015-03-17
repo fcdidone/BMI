@@ -44,7 +44,7 @@ BMI <- function(weight,height,units)  {
 
 ```
 
-## Graphic
+## Plot
 
 The app also plots a graph of where are your BMI in the scale of the BMI. The  code fot the graph for a BMI of 22 and height of 170 cm:
 ```{r}
@@ -71,7 +71,44 @@ ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
 
 ```
 
-##Conclusion
+## Table
+
+The app produces a table showing the relationship between the BMI and you current height.   
+
+This a table for a person with 5.6 feet:
+
+```{r}
+
+```{r,echo=FALSE}
+
+
+gg <- c("< 18.5 kg/m^2","18.5 kg/m^2 - 25 kg/m^2","25 kg/m^2 - 30 kg/m^2","> 30 kg/m^2")
+
+ltext<- function(height,units)
+{ 
+        if(units =="imperial"){
+                x1 <- as.character(round(((height*0.3048)^2*c(18.5,25,30)*2.20462),1))
+                paste(x1,"lb")->x1
+                x1
+        }
+        else if(units=="metric"){
+                x1 <- as.character(round(((height/100)^2*c(18.5,25,30)),1))
+                paste(x1, "kg") -> x1
+                x1
+        }}
+cc <- ltext(5.6,"imperial")
+
+kable(data.frame(Status=c("Underweight","Normal","Overweight","Obese"),
+                                            "BMI " =gg,
+                                            Weight= c(paste("<",cc[1]),
+                                                      paste(cc[1],"-",cc[2]),
+                                                      paste(cc[2],"-",cc[3]),
+                                                      paste(">",cc[3]))))
+
+```
+
+
+## Conclusion
 
 The app does what is asked to do, despite being simple and with not big computation or prediction. This is a course project for the Coursera course developing data products. Hope you guys enjoy it!
 

@@ -106,12 +106,11 @@ ggplot(data=gr,aes(x=id,y=BMI,fill=Status,width=0.1))+
 
 **Table**
 <small> 
-- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet 
+- The app produces a table showing the relationship between the BMI and you current height.This a table for a person with 5.6 feet: 
 
 
-```{r,echo=FALSE,size=0.3}
+```{r,echo=FALSE}
 
-library(pander)
 
 gg <- c("< 18.5 kg/m^2","18.5 kg/m^2 - 25 kg/m^2","25 kg/m^2 - 30 kg/m^2","> 30 kg/m^2")
 
